@@ -1,0 +1,111 @@
+		**Rudy's Assembly Crash Course***
+Aight, listen here maggot, you got 5 minutes, and you gotta RE a program. Heres what you need to know.
+
+		Assembly is the third lowest level of programming that is understandable by a computer
+	(Although the only one that's actually legible by humans)
+	To even begin to understand assembly you need to become familiar with the most basic concepts.
+	The first thing you should understand are registers.
+
+	Registers will most likely differ based on the language of assembly that you work with,
+	but essentially the overall concept won't ever change. 
+	Registers are used in conjunction with instructions, which I'll cover shortly.
+
+	Some of the most common registers are described below:
+
+------------------------------------------------------------------------------------------
+	
+	EIP: Instruction pointer - the EIP keeps the memory address of the next executed instruction
+	in memory. The CPU looks at this when it's trying to figure out what instruction to execute
+	next.	You'll be seeing it a lot...
+
+	ESP: Stack pointer - the ESP is responsible for keeping the top of the stack in check.
+	In other words, it keeps the last item on the stack in it.
+
+	EBP: Base Pointer - the EBP is used to basically "walk" through the stack. 
+	That'll make more sense later.
+
+	EAX: Also called the acumulator, EAX is a general purpose register that has 2 common uses:
+	To store the return value of a function, as well as serve as a special register for
+	certain calculations, and to keep results.
+	It has a couple other things behind it, but those are essentially what its for.  
+	
+	EBX: This is the "base" register, it's usually used to store data in general, as well as
+	memory addresses.
+
+	ECX: ECX is the "counter" register. It's rather self explanitory; it's used as a counter,
+	mainly to control loop iterations & such.
+
+	EDX: EDX is the data register, & is used to keep the address of a variable in memory to
+	access at a later date.
+
+	ESI/EDI: ESI & EDI are called the "source index" & the "destination index" respectively.
+	They are less used than the previously mentioned registers. But usually they're used to
+	transfer data. With ESI keeping the source address of a variable, and the EDI keeping
+	the destination address. Sadly, they can't be accessed at byte level. 
+	(Trust me, it sucks)
+------------------------------------------------------------------------------------------
+
+	Phew. That was a lot of writing, anyways, lets get to some examples of the registers using
+	MIPS, which is a language of assembly.
+
+	The "add" instruction is responsible for adding two numbers and saving it in a specified
+	register, example being:
+------------------------------------------------------------------------------------------
+	C code:
+
+	A + B = C;
+------------------------------------------------------------------------------------------
+	MIPS code:
+	
+	add $s0, $s1, $s2
+------------------------------------------------------------------------------------------
+	The add instruction, well, adds, the contents of $s1, and $s2, and places the end
+	result into $s0, just image $s0 being C, $s1 A, and $s2 B.
+
+	MIPS also has comparison instructions like 'slt' (thats an L btw), and jump
+	instructions, like 'j'.
+
+	Comparison instructions compare two values, and put the result in a register. 'slt'
+	represents "is less than". For example:
+
+	slt $t0, $t1, $t2
+------------------------------------------------------------------------------------------
+	In this one, the register $t0, is the destination (Aka, the register in which the
+	result will be going into), the second, and third regisers are then compared with
+	"less than"
+
+	$t1 < $t2
+
+	The result will be 1 if the comparison is true, and 0 if the comparison is false.
+------------------------------------------------------------------------------------------
+	Now, why do you need to know this? Most programming languages are able to handle
+	conditional statements like if-then-else, along with repetetive actions like loops.
+
+	Well... Assembly doesn't have that, welcome to the real world.
+
+	What it has instead, is support for conditional and unconditional jumps, what the
+	hell does this mean? It basically means that these are the most common ways to
+	control the flow of your code.
+
+	Although, it'll be good to remember that:
+
+	Unconditional jumps always occurr. Since there aren't any checkable conditions.
+------------------------------------------------------------------------------------------
+
+	A conditional jump is called a branch in MIPS. There are an array of jump
+	instructions in MIPS, one of them being 'j'.
+
+	'j' is simple, its job is to jump to an address.
+
+	But, there is also 'jr', which means that it will *jump to an address located inside
+	of a register.
+
+	Ex.
+
+	j target # This is an unconditional jump to the program label 'target'
+	
+	jr $t3 # This instruction jumps to a memory address contained inside of $t3.
+------------------------------------------------------------------------------------------
+	Now, I could go on an on about MIPS and its in's and outs, but that's not quite
+	fun. So instead, go find something to disassemble, oh, and I'll cover disassemblers
+	in the next batch of notes.
